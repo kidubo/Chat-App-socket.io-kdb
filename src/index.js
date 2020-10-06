@@ -13,7 +13,7 @@ const publicDirectoryPath = path.join(__dirname, '../public')
 
 app.use(express.static(publicDirectoryPath))
 
-let count = 0
+// let count = 0
 
 // Server (emit) -> Client  (receive)- countUpdated
 // Client (emit) -> Server (receive) - increment
@@ -41,9 +41,15 @@ io.on('connection', (socket) => {
     socket.on('sendMessage', (message) => {
         io.emit('message', message)
     })
+
+    socket.on('sendLocation', (location) => {
+        io.emit('message', `https://google.com/maps?q=${location.latitude},${location.longitude}`)
+    })
+
     socket.on('disconnect', () => {
         io.emit('message', 'A user has left!')
     })
+
 
 })
 
