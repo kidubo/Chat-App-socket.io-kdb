@@ -3,14 +3,25 @@ const socket = io()
 // To receive the message from the server we use the method by calling 
 //socket.on("name of the event and must match with that on in the server", ()=>{})
 
-socket.on('countUpdated', (count) => {
-    console.log(`The count  has been updated!!` + count)
+// socket.on('countUpdated', (count) => {
+//     console.log(`The count  has been updated!!` + count)
+// })
+
+// // allow the client to update the count and send it to the server  emit event to the specific connection
+// // so the server emit it to the other connected client emit event to every single connection
+
+// document.querySelector('#increment').addEventListener('click', () => {
+//     console.log('Clicked')
+// //     socket.emit('increment')
+// })
+
+socket.on("message", (message) => {
+    console.log(message)
 })
 
-// allow the client to update the count and send it to the server  emit event to the specific connection
-// so the server emit it to the other connected client emit event to every single connection
+document.querySelector('#message-form').addEventListener('submit', (e) => {
+    e.preventDefault()
 
-document.querySelector('#increment').addEventListener('click', () => {
-    console.log('Clicked')
-    socket.emit('increment')
+    const message = document.querySelector('input').value
+    socket.emit('sendMessage', message)
 })

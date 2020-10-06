@@ -23,17 +23,25 @@ let count = 0
 io.on('connection', (socket) => {
     // console.log(`New WebSocket connection`)
 
-    socket.emit('countUpdated', count)
+    // socket.emit('countUpdated', count)
 
-    socket.on('increment', () => {
-        count++
+    // socket.on('increment', () => {
+    //     count++
 
-        // socket.emi emit to a particular client
-        // but using io.emit emit to everyone in the connection
+    //     // socket.emi emit to a particular client
+    //     // but using io.emit emit to everyone in the connection
 
-        io.emit('countUpdated', count)
+    //     io.emit('countUpdated', count)
 
+    // })
+
+    socket.emit("message", "welcome!")
+
+    socket.on('sendMessage', (message) => {
+        io.emit('message', message)
     })
+
+
 })
 
 server.listen(port, () => {
