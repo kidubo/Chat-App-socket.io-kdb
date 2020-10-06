@@ -28,8 +28,8 @@ io.on('connection', (socket) => {
     socket.on('increment', () => {
         count++
 
-        // socket.emit('countUpdated', count) this only emit to a particular client
-        // but using io.emit is going to emit to everyone in the connection
+        // socket.emi emit to a particular client
+        // but using io.emit emit to everyone in the connection
 
         io.emit('countUpdated', count)
 

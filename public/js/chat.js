@@ -1,7 +1,7 @@
 const socket = io()
 
 // To receive the message from the server we use the method by calling 
-//socket.on("name of the event and this must match with that on in the server", ()=>{})
+//socket.on("name of the event and must match with that on in the server", ()=>{})
 
 socket.on('countUpdated', (count) => {
     console.log(`The count  has been updated!!` + count)
